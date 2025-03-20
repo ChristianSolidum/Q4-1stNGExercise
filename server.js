@@ -19,11 +19,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Render the initial page with the number input form
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render('index');
+});
+
+app.get('/draw', (req, res) => { 
+  const sideLength1 = req.query.sideLength1 || 50;
+  const sideLength2 = req.query.sideLength2 || 50;
+  res.render('draw', { sideLength1, sideLength2 });
 });
 
 // Create express route binder for draw.hbs and get the data from the url as parameters
 // that came from index.hbs
+
+
+app.post('/draw', (req, res) => {
+  const { sideLength1, sideLength2 } = req.body;
+  res.render('draw', { sideLength1, sideLength2 });
+});
 
 
 
